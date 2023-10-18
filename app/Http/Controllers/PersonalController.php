@@ -14,7 +14,7 @@ class PersonalController extends Controller
     }
     public function store(Request $request)
     {
-        $personal = new Carrera();
+        $personal = new Personal();
         $personal->area = ucwords($request->input('area'));
         // $personal->activo ='1';
         $personal->save();
@@ -34,8 +34,8 @@ class PersonalController extends Controller
     }
     public function destroy($id)
     {
-        $eliminar = Personal::find($id);
-        $eliminar->delete();
+        $personal = Personal::find($id);
+        $personal->delete();
 
         return Response()->json($personal, 200);
     }

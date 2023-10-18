@@ -44,9 +44,9 @@ class EventoController extends Controller
     }
     public function destroy($id)
     {
-        $eliminar = Evento::find($id);
-        $eliminar->delete();
+        $evento = Evento::find($id);
+        $evento->delete();
 
-        return Response()->json($eliminar, 200);
+        return Response()->json($evento, 200);
     }
 }

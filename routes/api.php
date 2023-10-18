@@ -26,8 +26,9 @@ Route::post('logout', [AuthController::class, 'logout']);
 Route::apiResources([
     'carreras' => App\Http\Controllers\CarreraController::class,
     'facultades' => App\Http\Controllers\FacultadController::class,
-    'personal' => App\Http\Controllers\PersonalController::class,
+    'personales' => App\Http\Controllers\PersonalController::class,
     'personas' => App\Http\Controllers\PersonaController::class,
+    'categorias' => App\Http\Controllers\CategoriaController::class,
     'users' => App\Http\Controllers\UserController::class,
 
 ]);

@@ -46,9 +46,9 @@ class PersonaController extends Controller
     }
     public function destroy($id)
     {
-        $eliminar = Persona::find($id);
-        $eliminar->delete();
+        $persona = Persona::find($id);
+        $persona->delete();
 
-        return Response()->json($eliminar, 200);
+        return Response()->json($persona, 200);
     }
 }

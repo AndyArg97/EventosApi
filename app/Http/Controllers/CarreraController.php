@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Carrera;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class CarreraController extends Controller

@@ -11,16 +11,31 @@ class FacultadController extends Controller
     {
         $facultade = new Facultad();
         $facultade->nombre_facultad = $request->input('nombre_facultad');
+        $facultade->save();
+        return Response()->json($facultade, 200);
+
     }
     public function index()
     {
         $facultade = Facultad::all();
         return Response()->json($facultade);
     }
-    public function destroy($facultade)
+    public function update(Request $request, $id)
     {
-        $eliminar = Facultad::find($facultade);
-        $eliminar->delete();
+        //
+        $facultade = Facultad::find($id);
+        $facultade->nombre_facultad = ucwords($request->input('nombre_facultad'));
+        // $facultade->activo = $request->input('activo');
+        $facultade->save();
+
+        return response()->json($facultade, 200);
+    }
+    public function destroy($id)
+    {
+        $facultade = Facultad::find($id);
+        $facultade->delete();
+
+        return response()->json($facultade, 200);
 
     }
 }

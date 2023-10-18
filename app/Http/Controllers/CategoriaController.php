@@ -14,7 +14,7 @@ class CategoriaController extends Controller
     }
     public function store(Request $request)
     {
-        $categoria = new Carrera();
+        $categoria = new Categoria();
         $categoria->tipo_categoria = ucwords($request->input('tipo_categoria'));
         // $categoria->activo ='1';
         $categoria->save();
@@ -34,8 +34,8 @@ class CategoriaController extends Controller
     }
     public function destroy($id)
     {
-        $eliminar = Categoria::find($id);
-        $eliminar->delete();
+        $categoria = Categoria::find($id);
+        $categoria->delete();
 
         return Response()->json($categoria, 200);
     }
