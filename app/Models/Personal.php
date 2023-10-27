@@ -7,5 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Personal extends Model
 {
-    use HasFactory;
+    public function personas()
+    {
+        return $this->hasMany(Persona::class);
+    }
+    public function eventos()
+    {
+        return $this->hasMany(Evento::class);
+    }
+    public function eventoPersonals()
+    {
+        return $this->hasMany(EventoPersonal::class);
+    }
 }

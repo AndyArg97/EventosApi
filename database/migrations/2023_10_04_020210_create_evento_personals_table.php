@@ -11,24 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('eventos', function (Blueprint $table) {
+        Schema::create('evento_personals', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_evento');
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin');
+            $table->date('fecha_evento');
+            $table->string('cronograma');
             $table->string('foto_ruta');
             $table->text('descripcion');
             $table->text('ubicacion');
-            $table->bigInteger('categoria_id')->unsigned();
-            $table->bigInteger('facultad_id')->unsigned()->nullable();
-            $table->bigInteger('carrera_id')->unsigned()->nullable();
-            $table->bigInteger('personal_id')->unsigned()->nullable();
-            $table->foreign('categoria_id')->references('id')
-            ->on('categorias');
-            $table->foreign('facultad_id')->references('id')
-            ->on('facultads');
+            $table->bigInteger('carrera_id')->unsigned();
             $table->foreign('carrera_id')->references('id')
             ->on('carreras');
+            $table->bigInteger('personal_id')->unsigned();
             $table->foreign('personal_id')->references('id')
             ->on('personals');
             $table->string('enable');
@@ -41,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('eventos');
+        Schema::dropIfExists('evento_personals');
     }
 };

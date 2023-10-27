@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Evento extends Model
+class EventoCarreras extends Model
 {
     use HasFactory;
     public function comentarios()
@@ -20,17 +20,8 @@ class Evento extends Model
     {
         return $this->belongsTo(Categoria::class);
     }
-    public function facultads()
-    {
-        return $this->belongsTo(Facultad::class);
-    }
     public function carreras()
     {
         return $this->belongsTo(Carrera::class);
     }
-    public function personals()
-    {
-        return $this->belongsTo(Personal::class);
-    }
-    
 }

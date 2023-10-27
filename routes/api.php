@@ -29,6 +29,8 @@ Route::apiResources([
     'personales' => App\Http\Controllers\PersonalController::class,
     'personas' => App\Http\Controllers\PersonaController::class,
     'categorias' => App\Http\Controllers\CategoriaController::class,
+    'eventos' => App\Http\Controllers\EventoController::class,
+    'actividades' => App\Http\Controllers\ActividadesController::class,
     'users' => App\Http\Controllers\UserController::class,
 
 ]);

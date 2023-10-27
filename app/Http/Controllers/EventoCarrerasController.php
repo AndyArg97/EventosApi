@@ -2,29 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Evento;
 use Illuminate\Http\Request;
+use App\Models\EventoCarreras;
 
-class EventoController extends Controller
+class EventoCarrerasController extends Controller
 {
     public function index()
     {
-        $evento = Evento::all();
+        $evento = EventoCarreras::all();
         return Response()->json($evento, 200);
     }
     public function store(Request $request)
     {
-        $evento = new Evento();
+        $evento = new EventoCarreras();
         $evento->nombre_evento = strtoupper($request->input('nombre_evento'));
-        $evento->fecha_inicio = $request->input('fecha_inicio');
-        $evento->fecha_fin = $request->input('fecha_fin');
+        $evento->fecha_evento = $request->input('fecha_evento');
+        $evento->cronograma = $request->input('cronograma');
         $evento->foto_ruta = $request->input('foto_ruta');
         $evento->descripcion = $request->input('descripcion');
         $evento->categoria_id = $request->input('categoria_id');
-        $evento->facultad_id = $request->input('facultad_id');
-        $evento->carrera_id = $request->input('carrera_id');
-        $evento->personal_id = $request->input('personal_id');
-        $evento->enable = $request->input('activo');
+        $evento->eventoCarreras_id = $request->input('eventoCarreras_id');
+        $evento->enable ='1';
         $evento->save();
 
         return Response()->json($evento, 200);
@@ -33,16 +31,14 @@ class EventoController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $evento = Evento::find($id);
+        $evento = EventoCarreras::find($id);
         $evento->nombre_evento = strtoupper($request->input('nombre_evento'));
-        $evento->fecha_inicio = $request->input('fecha_inicio');
-        $evento->fecha_fin = $request->input('fecha_fin');
+        $evento->fecha_evento = $request->input('fecha_evento');
+        $evento->cronograma = $request->input('cronograma');
         $evento->foto_ruta = $request->input('foto_ruta');
         $evento->descripcion = $request->input('descripcion');
         $evento->categoria_id = $request->input('categoria_id');
-        $evento->facultad_id = $request->input('facultad_id');
-        $evento->carrera_id = $request->input('carrera_id');
-        $evento->personal_id = $request->input('personal_id');
+        $evento->eventoCarreras_id = $request->input('eventoCarreras_id');
         $evento->enable = $request->input('activo');
         $evento->save();
 
@@ -50,7 +46,7 @@ class EventoController extends Controller
     }
     public function destroy($id)
     {
-        $evento = Evento::find($id);
+        $evento = EventoCarreras::find($id);
         $evento->delete();
 
         return Response()->json($evento, 200);

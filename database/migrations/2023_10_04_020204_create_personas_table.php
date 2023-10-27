@@ -18,12 +18,12 @@ return new class extends Migration
             $table->bigInteger('ci');
             $table->date('fecha_nacimiento');
             $table->unsignedBigInteger('user_id')->unsigned();
-            $table->unsignedBigInteger('personal_id')->nullable();
-            $table->unsignedBigInteger('carrera_id')->nullable();
+            $table->unsignedBigInteger('personal_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('carrera_id')->unsigned()->nullable();
             $table->foreign('personal_id')->references('id')
-            ->on('personals')->onDelete('cascade');
+            ->on('personals');
             $table->foreign('carrera_id')->references('id')
-            ->on('carreras')->onDelete('cascade');
+            ->on('carreras');
             $table->foreign('user_id')->references('id')
             ->on('users')->onDelete('cascade');
             $table->timestamps();

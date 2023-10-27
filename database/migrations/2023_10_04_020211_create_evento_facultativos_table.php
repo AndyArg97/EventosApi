@@ -11,12 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carreras', function (Blueprint $table) {
+        Schema::create('evento_facultativos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_carrera');
+            $table->string('nombre_evento');
+            $table->date('fecha_evento');
+            $table->string('cronograma');
+            $table->string('foto_ruta');
+            $table->text('descripcion');
+            $table->text('ubicacion');
+            $table->bigInteger('categoria_id')->unsigned();
+            $table->foreign('categoria_id')->references('id')
+            ->on('categorias');
             $table->bigInteger('facultad_id')->unsigned();
             $table->foreign('facultad_id')->references('id')
             ->on('facultads');
+            $table->string('enable');
             $table->timestamps();
         });
     }
@@ -26,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carreras');
+        Schema::dropIfExists('evento_facultativos');
     }
 };

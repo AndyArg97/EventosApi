@@ -16,4 +16,12 @@ class Carrera extends Model
     {
         return $this->hasMany(Persona::class);
     }
+    public function eventos()
+    {
+        return $this->hasMany(Evento::class);
+    }
+    public function eventoFacultativos()
+    {
+        return $this->hasMany(EventoCarreras::class);
+    }
 }
