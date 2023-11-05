@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('carreras', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_carrera');
+            $table->string('nombre');
             $table->bigInteger('facultad_id')->unsigned();
             $table->foreign('facultad_id')->references('id')
             ->on('facultads');

@@ -10,23 +10,23 @@ class PersonalController extends Controller
     public function index()
     {
         $personal = Personal::all();
-        return Response()->json($personal, 200);
+        return response()->json($personal, 200);
     }
     public function store(Request $request)
     {
         $personal = new Personal();
-        $personal->area = ucwords($request->input('area'));
+        $personal->nombre = ucwords($request->input('nombre'));
         // $personal->activo ='1';
         $personal->save();
 
-        return Response()->json($personal, 200);
+        return response()->json($personal, 200);
 
     }
     public function update(Request $request, $id)
     {
         //
         $personal = Personal::find($id);
-        $personal->area = ucwords($request->input('area'));
+        $personal->nombre = ucwords($request->input('nombre'));
         // $personal->activo = $request->input('activo');
         $personal->save();
 
@@ -37,6 +37,6 @@ class PersonalController extends Controller
         $personal = Personal::find($id);
         $personal->delete();
 
-        return Response()->json($personal, 200);
+        return response()->json($personal, 200);
     }
 }

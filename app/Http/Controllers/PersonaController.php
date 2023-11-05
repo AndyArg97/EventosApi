@@ -9,8 +9,14 @@ class PersonaController extends Controller
 {
     public function index()
     {
-        $persona = Persona::all();
-        return Response()->json($persona, 200);
+        $persona = Persona::with(['personal','carrera'])->get();
+        return response()->json($persona, 200);
+    }
+    public function show($id)
+    {
+        $persona = Persona::with(['personal','carrera'])->find($id);
+
+        return response()->json($persona, 200);
     }
     public function store(Request $request)
     {
@@ -19,13 +25,21 @@ class PersonaController extends Controller
         $persona->apellido = $request->input('apellido');
         $persona->ci = $request->input('ci');
         $persona->fecha_nacimiento = $request->input('fecha_nacimiento');
+        switch ($request->input('objeto_id')) {
+            case 1:
+                $evento->carrera_id = $request->input('objeto_id');
+                // $evento->personal_id = 0;
+                break;
+            case 2:
+                // $evento->carrera_id = 0;
+                $evento->personal_id = $request->input('objeto_id');
+                break;
+        }
         $persona->user_id = $request->input('user_id');
-        $persona->personal_id = $request->input('personal_id');
-        $persona->carrera_id = $request->input('carrera_id');
         // $persona->activo ='1';
         $persona->save();
 
-        return Response()->json($persona, 200);
+        return response()->json($persona, 200);
 
     }
     public function update(Request $request, $id)
@@ -36,9 +50,17 @@ class PersonaController extends Controller
         $persona->apellido = $request->input('apellido');
         $persona->ci = $request->input('ci');
         $persona->fecha_nacimiento = $request->input('fecha_nacimiento');
+        switch ($request->input('objeto_id')) {
+            case 1:
+                $evento->carrera_id = $request->input('objeto_id');
+                // $evento->personal_id = 0;
+                break;
+            case 2:
+                // $evento->carrera_id = 0;
+                $evento->personal_id = $request->input('objeto_id');
+                break;
+        }
         $persona->user_id = $request->input('user_id');
-        $persona->personal_id = $request->input('personal_id');
-        $persona->carrera_id = $request->input('carrera_id');
         // $persona->activo = $request->input('activo');
         $persona->save();
 
@@ -49,6 +71,6 @@ class PersonaController extends Controller
         $persona = Persona::find($id);
         $persona->delete();
 
-        return Response()->json($persona, 200);
+        return response()->json($persona, 200);
     }
 }

@@ -11,9 +11,11 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {  
-        if(Auth::attempt(['name' => $request->name, 'password' => $request->password])){
+        if(Auth::attempt(['name' => $request->email, 'password' => $request->password])){
           $name = Auth::user();
           $success['token'] =  $name->createToken('LaraPassport')->accessToken;
+          $success['user'] =  $name;
+          $success['user']['roles'] = Auth::user()->roles()->get();
           return response()->json([
             'status' => 'success',
             'data' => $success

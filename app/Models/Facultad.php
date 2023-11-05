@@ -20,8 +20,4 @@ class Facultad extends Model
     {
         return $this->hasMany(Evento::class);
     }
-    public function eventoFacultativo()
-    {
-        return $this->hasMany(EventoFacultativo::class);
-    }
 }

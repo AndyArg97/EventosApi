@@ -15,8 +15,4 @@ class Personal extends Model
     {
         return $this->hasMany(Evento::class);
     }
-    public function eventoPersonals()
-    {
-        return $this->hasMany(EventoPersonal::class);
-    }
 }

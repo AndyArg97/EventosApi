@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Carrera extends Model
 {
     use HasFactory;
-    public function facultads()
+    public function facultad()
     {
         return $this->belongsTo(Facultad::class);
     }

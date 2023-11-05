@@ -15,16 +15,20 @@ class rolSeeder extends Seeder
     {
         $roles = [
             [
-                'nombre' => 'Administrador',
+                'name' => 'admin',
+                'display_name' => 'ADMINISTRADOR',
             ],
             [
-                'nombre' => 'Encargado de Eventos',
+                'name' => 'encargadoEventos',
+                'display_name' => 'ENCARGADO DE EVENTOS',
             ],
             [
-                'nombre' => 'Participante',
+                'name' => 'participante',
+                'display_name' => 'PARTICIPANTE',
             ],
             [
-                'nombre' => 'Observador',
+                'name' => 'observador',
+                'display_name' => 'OBSERVADOR',
             ],
         ];
 

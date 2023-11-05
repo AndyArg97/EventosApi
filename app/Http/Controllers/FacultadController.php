@@ -10,21 +10,21 @@ class FacultadController extends Controller
     public function store(Request $request)
     {
         $facultade = new Facultad();
-        $facultade->nombre_facultad = $request->input('nombre_facultad');
+        $facultade->nombre = $request->input('nombre');
         $facultade->save();
-        return Response()->json($facultade, 200);
+        return response()->json($facultade, 200);
 
     }
     public function index()
     {
         $facultade = Facultad::all();
-        return Response()->json($facultade);
+        return response()->json($facultade);
     }
     public function update(Request $request, $id)
     {
         //
         $facultade = Facultad::find($id);
-        $facultade->nombre_facultad = ucwords($request->input('nombre_facultad'));
+        $facultade->nombrE = ucwords($request->input('nombre'));
         // $facultade->activo = $request->input('activo');
         $facultade->save();
 

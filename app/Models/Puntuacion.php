@@ -16,16 +16,4 @@ class Puntuacion extends Model
     {
         return $this->belongsTo(Evento::class);
     }
-    public function eventoFacultativos()
-    {
-        return $this->belongsTo(EventoFacultativo::class);
-    }
-    public function eventoCarreras()
-    {
-        return $this->belongsTo(EventoCarreras::class);
-    }
-    public function eventoPersonals()
-    {
-        return $this->belongsTo(EventoPersonal::class);
-    }
 }

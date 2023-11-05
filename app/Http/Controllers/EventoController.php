@@ -9,8 +9,9 @@ class EventoController extends Controller
 {
     public function index()
     {
-        $evento = Evento::all();
-        return Response()->json($evento, 200);
+        $evento = Evento::with(['categoria','facultad','carrera','personal'])->get();
+        
+        return response()->json($evento, 200);
     }
     public function store(Request $request)
     {
@@ -20,14 +21,30 @@ class EventoController extends Controller
         $evento->fecha_fin = $request->input('fecha_fin');
         $evento->foto_ruta = $request->input('foto_ruta');
         $evento->descripcion = $request->input('descripcion');
+        $evento->ubicacion = $request->input('ubicacion');
+        switch ($request->input('categoria_id')) {
+            case 1:
+                $evento->facultad_id = $request->input('categoria_id');
+                // $evento->carrera_id = '';
+                // $evento->personal_id = '';
+                break;
+            case 2:
+                // $evento->facultad_id = '';
+                $evento->carrera_id = $request->input('categoria_id');
+                // $evento->personal_id = '';
+                break;
+            case 3:
+                // $evento->facultad_id = '';
+                // $evento->carrera_id = '';
+                $evento->personal_id = $request->input('categoria_id');
+                break;
+            }
         $evento->categoria_id = $request->input('categoria_id');
-        $evento->facultad_id = $request->input('facultad_id');
-        $evento->carrera_id = $request->input('carrera_id');
-        $evento->personal_id = $request->input('personal_id');
-        $evento->enable = $request->input('activo');
+        
+        $evento->enable = 'true';
         $evento->save();
 
-        return Response()->json($evento, 200);
+        return response()->json($evento, 200);
 
     }
     public function update(Request $request, $id)
@@ -39,11 +56,26 @@ class EventoController extends Controller
         $evento->fecha_fin = $request->input('fecha_fin');
         $evento->foto_ruta = $request->input('foto_ruta');
         $evento->descripcion = $request->input('descripcion');
+        $evento->ubicacion = $request->input('ubicacion');
+        switch ($request->input('categoria_id')) {
+            case 1:
+                $evento->facultad_id = $request->input('categoria_id');
+                // $evento->carrera_id = '';
+                // $evento->personal_id = '';
+                break;
+            case 2:
+                // $evento->facultad_id = '';
+                $evento->carrera_id = $request->input('categoria_id');
+                // $evento->personal_id = '';
+                break;
+            case 3:
+                // $evento->facultad_id = '';
+                // $evento->carrera_id = '';
+                $evento->personal_id = $request->input('categoria_id');
+                break;
+            }
         $evento->categoria_id = $request->input('categoria_id');
-        $evento->facultad_id = $request->input('facultad_id');
-        $evento->carrera_id = $request->input('carrera_id');
-        $evento->personal_id = $request->input('personal_id');
-        $evento->enable = $request->input('activo');
+        // $evento->enable = $request->input('activo');
         $evento->save();
 
         return response()->json($evento, 200);
@@ -53,6 +85,6 @@ class EventoController extends Controller
         $evento = Evento::find($id);
         $evento->delete();
 
-        return Response()->json($evento, 200);
+        return response()->json($evento, 200);
     }
 }

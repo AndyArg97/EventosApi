@@ -10,16 +10,17 @@ class CategoriaController extends Controller
     public function index()
     {
         $categoria = Categoria::all();
-        return Response()->json($categoria, 200);
+        return response()->json($categoria, 200);
     }
     public function store(Request $request)
     {
         $categoria = new Categoria();
         $categoria->tipo_categoria = ucwords($request->input('tipo_categoria'));
         // $categoria->activo ='1';
+        $categoria->color = $request->input('color');
         $categoria->save();
 
-        return Response()->json($categoria, 200);
+        return response()->json($categoria, 200);
 
     }
     public function update(Request $request, $id)
@@ -28,6 +29,7 @@ class CategoriaController extends Controller
         $categoria = Categoria::find($id);
         $categoria->tipo_categoria = ucwords($request->input('tipo_categoria'));
         // $categoria->activo = $request->input('activo');
+        $categoria->color = $request->input('color');
         $categoria->save();
 
         return response()->json($categoria, 200);
@@ -37,6 +39,6 @@ class CategoriaController extends Controller
         $categoria = Categoria::find($id);
         $categoria->delete();
 
-        return Response()->json($categoria, 200);
+        return response()->json($categoria, 200);
     }
 }

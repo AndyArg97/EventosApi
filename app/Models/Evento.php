@@ -16,19 +16,19 @@ class Evento extends Model
     {
         return $this->hasMany(Puntuacion::class);
     }
-    public function categorias()
+    public function categoria()
     {
-        return $this->belongsTo(Categoria::class);
+        return $this->belongsTo(Categoria::class,'categoria_id');
     }
-    public function facultads()
+    public function facultad()
     {
         return $this->belongsTo(Facultad::class);
     }
-    public function carreras()
+    public function carrera()
     {
         return $this->belongsTo(Carrera::class);
     }
-    public function personals()
+    public function personal()
     {
         return $this->belongsTo(Personal::class);
     }
