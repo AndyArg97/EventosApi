@@ -13,19 +13,21 @@ return new class extends Migration
     {
         Schema::create('personas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('apellido');
+            $table->string('primer_nombre');
+            $table->string('segundo_nombre');
+            $table->string('apellido_paterno');
+            $table->string('apellido_materno');
             $table->bigInteger('ci');
             $table->date('fecha_nacimiento');
-            $table->unsignedBigInteger('user_id')->unsigned();
             $table->unsignedBigInteger('personal_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('facultad_id')->unsigned()->nullable();
             $table->unsignedBigInteger('carrera_id')->unsigned()->nullable();
             $table->foreign('personal_id')->references('id')
             ->on('personals');
+            $table->foreign('facultad_id')->references('id')
+            ->on('facultads');
             $table->foreign('carrera_id')->references('id')
             ->on('carreras');
-            $table->foreign('user_id')->references('id')
-            ->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

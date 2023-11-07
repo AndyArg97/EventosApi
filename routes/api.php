@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('token', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('logout', [AuthController::class, 'logout']);
+Route::post('registerWebSite', [AuthController::class, 'registerWebSite']);
 
 Route::apiResources([
     'carreras' => App\Http\Controllers\CarreraController::class,

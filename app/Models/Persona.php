@@ -26,16 +26,20 @@ class Persona extends Model
     {
         return $this->hasMany(Puntuacion::class);
     }
+    public function facultad()
+    {
+        return $this->belongsTo(Facultad::class,'facultad_id');
+    }
     public function carrera()
     {
-        return $this->belongsTo(Facultad::class,'carrera_id');
+        return $this->belongsTo(Carrera::class,'carrera_id');
     }
     public function personal()
     {
         return $this->belongsTo(Personal::class,'personal_id');
     }
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->hasMany(User::class,'user_id');
     }
 }

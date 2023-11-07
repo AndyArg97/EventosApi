@@ -13,6 +13,12 @@ class EventoController extends Controller
         
         return response()->json($evento, 200);
     }
+    public function show($id)
+    {
+        $evento = Evento::with(['personal','carrera','facultad','categoria'])->find($id);
+
+        return response()->json($evento, 200);
+    }
     public function store(Request $request)
     {
         $evento = new Evento();
